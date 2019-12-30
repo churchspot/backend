@@ -5,6 +5,7 @@ from apis.yt_api import yt_api
 from flask_cors import CORS
 from apis.day_info import day_info
 from apis.day_info import name_day_info
+from config.cache import cache
 app = Flask(__name__)
 
 """
@@ -26,6 +27,7 @@ app.register_blueprint(yt_api, url_prefix='/api/yt/')
 app.register_blueprint(day_info, url_prefix='/api/day_info')
 app.register_blueprint(name_day_info, url_prefix="/api/name_day_info")
 CORS(app)
+cache.init_app(app)
 @app.route('/')
 def hello():
     return 'Hello, World!'
