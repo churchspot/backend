@@ -12,19 +12,24 @@ def get_date():
 
 @name_day_info.route("/", methods = ["GET"])
 def get_name_day():
-    r = requests.get("https://imienniczek.pl/widget/js")
+    r = requests.get('https://api.abalin.net/today?country=pl')
     if r.ok:
-        string = r.text[16:]
-        new_string = string.replace("'", "")
-        new_string = new_string.replace(")", "")
-        new_string = new_string.replace(";", "")
-        html = new_string
-        p = BeautifulSoup(html)
-        list_of_a = p.find_all("a")
-        string = ''
-        for x in list_of_a:
-            string += x.text + " "
-        return string
+        return r.json()
     elif not r.ok:
         return 'error with request!'
+    # r = requests.get("https://imienniczek.pl/widget/js")
+    # if r.ok:
+    #     string = r.text[16:]
+    #     new_string = string.replace("'", "")
+    #     new_string = new_string.replace(")", "")
+    #     new_string = new_string.replace(";", "")
+    #     html = new_string
+    #     p = BeautifulSoup(html)
+    #     list_of_a = p.find_all("a")
+    #     string = ''
+    #     for x in list_of_a:
+    #         string += x.text + " "
+    #     return string
+    # elif not r.ok:
+    #     return 'error with request!'
 
