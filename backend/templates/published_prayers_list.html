@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Lista Opublikowanych Modlitw ({{username}})</h1>
+    <ul>
+      {% for prayer in prayers %}
+      <li>
+        <p>Autor: {{prayer[2]}}</p>
+        <p>Treść: {{prayer[1]}}</p>
+        <p>Czy opublikowane (0-nie 1-tak): {{prayer[3]}}</p>
+        <a href="prayers/delete/{{prayer[0]}}">
+          <button>
+            Usuń modlitwe
+          </button>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
